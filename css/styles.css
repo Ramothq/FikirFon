@@ -1,0 +1,141 @@
+/* Google Font Ekleme */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Genel Sayfa Stili */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* En Üstteki "FikirFon" Yazısı */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 40px;
+    font-weight: 600;
+    color: #007bff; /* Mavi */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Ana Konteyner */
+.container {
+    display: flex;
+    width: 900px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sol Kısım (Form) */
+.left {
+    width: 50%;
+    padding: 40px;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.left h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* "Hesabın var mı? Giriş Yap" bağlantısı */
+.left p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.left p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.left p a:hover {
+    text-decoration: underline;
+}
+
+/* Sağ Kısım (Slogan ve Animasyon) */
+.right {
+    width: 50%;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.slogan {
+    font-size: 22px;
+    font-style: italic;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Slogan Animasyonu */
+#slogan-animation {
+    font-weight: bold;
+    color: #ffffff; /* Beyaz */
+}
+.error-message {
+    background-color: #ffdddd;
+    color: #d8000c;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+

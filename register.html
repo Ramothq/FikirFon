@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FikirFon - Kayıt Ol</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- En Üstte "FikirFon" Yazısı -->
+<header>
+    <h1 class="logo">FikirFon</h1>
+</header>
+
+<div class="container">
+    <!-- Sol Taraf (Kayıt Formu) -->
+    <div class="left">
+        <h2>Kayıt Ol</h2>
+        <form action="php/register.php" method="POST">
+            <input type="text" name="first_name" placeholder="Adınız" required>
+            <input type="text" name="last_name" placeholder="Soyadınız" required>
+            <input type="email" name="email" placeholder="E-Posta" required>
+            <input type="password" name="password" placeholder="Şifre" required>
+            <select name="role" required>
+                <option value="">Rolünüzü Seçin</option>
+                <option value="girisimci">Girişimci</option>
+                <option value="yatirimci">Yatırımcı</option>
+            </select>
+            <button type="submit">Kayıt Ol</button>
+        </form>
+        <p>Zaten hesabın var mı? <a href="login.html">Giriş Yap</a></p>
+
+    </div>
+
+    <!-- Sağ Taraf (Slogan ve Animasyon) -->
+    <div class="right">
+        <p class="slogan">"Geleceği <span id="slogan-animation"></span>"</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sloganText = "Birlikte İnşa Ediyoruz!";
+        let index = 0;
+        function writeSlogan() {
+            if (index < sloganText.length) {
+                document.getElementById("slogan-animation").innerHTML += sloganText.charAt(index);
+                index++;
+                setTimeout(writeSlogan, 100);
+            }
+        }
+        writeSlogan();
+    });
+</script>
+
+</body>
+</html>
