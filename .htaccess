@@ -1,6 +1,10 @@
 Options -Indexes
 DirectoryIndex index.php
 
+# PHP hata raporlamasını aç
+php_flag display_errors on
+php_value error_reporting E_ALL
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
@@ -14,10 +18,6 @@ DirectoryIndex index.php
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php [L]
 </IfModule>
-
-# PHP hata raporlamasını aç
-php_flag display_errors on
-php_value error_reporting E_ALL
 
 # Dizin listelemeyi kapat
 Options -Indexes
