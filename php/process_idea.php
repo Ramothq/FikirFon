@@ -28,6 +28,10 @@ $title = $_POST['title'];
 $description = $_POST['description'];
 $category = $_POST['category'];
 $media_path = NULL; // Varsayılan olarak boş
+<!-- Kartın içine, uygun bir yere şunu ekle -->
+<button class="support-btn" data-idea-id="<?= $row['id'] ?>">🤝 Destekle</button>
+<span class="support-count"><?= $row['support_count'] ?? 0 ?></span> destek
+
 
 // Dosya yükleme işlemi
 if (!empty($_FILES['media']['name'])) {

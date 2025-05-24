@@ -8,9 +8,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    justify-content: flex-start;
+    min-height: 100vh;
     margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--gray-50);
+    color: var(--text-primary);
+    padding-top: 80px; /* Navbar yüksekliği + ekstra boşluk */
+    padding-bottom: 100px; /* Footer yüksekliğine göre ayarlanmalı */
 }
 
 /* En Üstteki "FikirFon" Yazısı */
@@ -136,6 +142,592 @@ button:hover {
     margin-bottom: 10px;
     border-radius: 5px;
     text-align: center;
+}
+
+:root {
+    --primary-color: #6B46C1;
+    --primary-light: #9F7AEA;
+    --primary-dark: #553C9A;
+    --secondary-color: #F7FAFC;
+    --accent-color: #ED8936;
+    --accent-light: #F6AD55;
+    --accent-dark: #DD6B20;
+    --text-primary: #2D3748;
+    --text-secondary: #718096;
+    --white: #FFFFFF;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--secondary-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Modern Navbar */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    padding: 1rem 0; /* Sol ve sağ padding'i kaldırıp inner-container'a taşıyacağız */
+    display: flex;
+    justify-content: center; /* İçeriği merkeze al */
+    align-items: center; /* Dikeyde ortala */
+    box-shadow: var(--shadow-md);
+    z-index: 1000;
+    height: 80px;
+    box-sizing: border-box;
+    border-bottom: 3px solid var(--accent-color);
+}
+
+.nav-inner-container {
+    width: 100%;
+    max-width: 1200px; /* Ana içerik konteyneri ile aynı genişlik */
+    margin: 0 auto; /* Ortaya hizala */
+    padding: 0 2rem; /* İç boşlukları ekle */
+    display: flex; /* İçindeki öğeleri flexbox ile düzenle */
+    justify-content: space-between; /* Öğeleri aralıklı yerleştir */
+    align-items: center; /* Dikeyde ortala */
+}
+
+.nav-left h1 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    position: relative;
+}
+
+.nav-left h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+.nav-center .search-box {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--primary-light);
+    border-radius: 50px;
+    width: 400px;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: var(--white);
+}
+
+.nav-center .search-box:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(237, 137, 54, 0.2);
+    border-color: var(--accent-color);
+    width: 450px;
+}
+
+/* Nav Center'ı ortaya hizala */
+.nav-center {
+    display: flex; /* Flex container yap */
+    justify-content: center; /* İçeriği yatayda ortaya hizala */
+    flex-grow: 1; /* Kalan boşluğu doldurmasını sağla */
+    /* width: auto; */ /* width: 400px; tanımını kaldırabiliriz veya auto yapabiliriz */
+}
+
+.nav-right {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.nav-right a:hover {
+    color: var(--accent-color);
+    background: rgba(237, 137, 54, 0.1);
+}
+
+.nav-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+}
+
+/* Tüm .idea-actions tanımlarını kaldırıp tek bir doğru tanımla değiştiriyoruz */
+/* Önceki dağınık ve çakışan tanımları temizle */
+.idea-actions {
+    display: flex; /* Her zaman görünür ve flexbox */
+    gap: 0.5rem; /* Butonlar arası boşluk */
+    align-items: center; /* Dikeyde ortala */
+    margin-left: 1rem; /* Başlıktan biraz boşluk */
+    opacity: 1; /* Her zaman tam görünür */
+    visibility: visible; /* Her zaman görünür */
+    /* position: absolute; top; right; gibi eski konumlandırma özellikleri burada OLMAMALI */
+    /* Eğer burada display: none; gibi bir satır varsa KALDIRILMALI */
+}
+
+/* .idea-card:hover .idea-actions gibi gizleme/gösterme yapan kurallar temizlenmeli */
+/* Ancak, sadece hoverda display: flex; yapan bir kural olabilir. Onu bulup kaldıracağız. */
+
+/* Fikir aksiyon butonlarının her zaman görünür olmasını sağla (yedeklemek için kalsın) */
+.idea-card .idea-actions {
+    opacity: 1 !important;
+    visibility: visible !important;
+    /* Eğer burada display: none; gibi bir satır varsa KALDIRILMALI */
+}
+
+/* İhtimal dahilindeki gizleyici kural (.idea-actions veya başka bir selector) */
+/* Bu kural opacity: 0; visibility: hidden; veya display: none; gibi bir şey içeriyor olabilir */
+/* ve normal durumda elementleri gizliyor olabilir. display: none; içeren bir kuralı bulup KALDIRACAĞIZ. */
+
+/* .idea-card:hover .idea-actions selector'ını arayalım ve display: flex; gibi bir şey içeriyorsa o kuralı kaldıralım. */
+
+/* Şimdi dosyanın geri kalanındaki diğer kuralları ekliyoruz */
+.idea-category {
+    background: rgba(237, 137, 54, 0.1);
+    color: var(--accent-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.support-count {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    background: rgba(237, 137, 54, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 500;
+}
+
+.support-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    background: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.support-btn:hover {
+    background: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.support-btn.supported {
+    background: var(--accent-color);
+}
+
+/* Modern Buttons */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-accent {
+    background: var(--accent-color);
+    color: var(--white);
+}
+
+.btn-accent:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Card Styles */
+.card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 1px solid rgba(107, 70, 193, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-slide-in {
+    animation: slideIn 0.5s ease forwards;
+}
+
+/* Modern Form Elements */
+input, textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--primary-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: var(--white);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.2);
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    gap: 1.5rem;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-center .search-box {
+        width: 200px;
+    }
+    
+    .nav-center .search-box:focus {
+        width: 250px;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-dark);
+}
+
+/* Container için üst boşluk düzeltmesi */
+.profile-container,
+.edit-container,
+.delete-container,
+.idea-container,
+.user-profile-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+/* Idea Card Styles */
+.idea-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 1px solid rgba(107, 70, 193, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.idea-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+}
+
+.idea-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Profile Header */
+.profile-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-color) 100%);
+    z-index: 0;
+}
+
+.profile-tab.active {
+    background: var(--accent-color);
+    color: var(--white);
+}
+
+.profile-tab:hover:not(.active) {
+    background: var(--accent-light);
+    color: var(--white);
+}
+
+/* Search Results */
+.search-results {
+    border: 2px solid var(--accent-light);
+}
+
+.search-results div:hover {
+    background: rgba(237, 137, 54, 0.1);
+}
+
+.search-results .user-link:hover {
+    background: rgba(237, 137, 54, 0.1);
+}
+
+.idea-contact {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6B46C1;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #F3E8FF;
+    transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+    background-color: #E9D8FD;
+    transform: translateY(-2px);
+}
+
+.contact-link svg {
+    color: #6B46C1;
+}
+
+/* Sadece form elemanlarında metin seçimine izin ver */
+input, textarea, .search-box {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Tüm .idea-action-btn tanımlarını kaldırıp tek bir doğru, arka plansız tanımla değiştiriyoruz */
+.idea-action-btn {
+    padding: 0.3rem 0.8rem; /* Daha küçük butonlar */
+    border-radius: 6px; /* Daha küçük border-radius */
+    font-size: 0.8rem; /* Daha küçük yazı tipi */
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none; /* Link için alt çizgiyi kaldır */
+    display: inline-flex !important; /* Her zaman inline-flex olarak görünür */
+    align-items: center;
+    gap: 0.3rem;
+    visibility: visible !important; /* Her zaman görünür */
+    border: 1px solid; /* Sınır rengi edit/delete sınıflarında belirlenecek */
+}
+
+.idea-action-btn:hover {
+    transform: translateY(-1px); /* Hafif yukarı kayma efekti */
+    box-shadow: var(--shadow-sm); /* Hafif gölge */
+}
+
+.edit-btn {
+    background: var(--primary-color); /* Profili Düzenle butonu rengi */
+    color: var(--white);
+    border: 1px solid var(--primary-color);
+}
+
+.edit-btn:hover {
+     background: var(--primary-dark);
+     border-color: var(--primary-dark);
+}
+
+.delete-btn {
+    background: #ef4444; /* Kırmızı renk (Tailwind red-500) */
+    color: var(--white);
+    border: 1px solid #ef4444;
+}
+
+.delete-btn:hover {
+    background: #dc2626; /* Daha koyu kırmızı */
+    border-color: #dc2626;
+}
+
+.empty-state {
+    text-align: center;
+}
+
+/* İhtimal dahilindeki gizleyici ve gösterici kuralları netleştirelim */
+
+/* Normal durumdaki .idea-actions tanımı (her zaman görünür olmalı) */
+.idea-actions {
+    display: flex; /* Her zaman görünür ve flexbox */
+    gap: 0.5rem; /* Butonlar arası boşluk */
+    align-items: center; /* Dikeyde ortala */
+    margin-left: 1rem; /* Başlıktan biraz boşluk */
+    opacity: 1; /* Her zaman tam görünür */
+    visibility: visible; /* Her zaman görünür */
+    /* position: absolute; top; right; gibi eski konumlandırma özellikleri burada OLMAMALI */
+}
+
+/* .idea-card:hover .idea-actions kuralı (Eğer gizleme/gösterme yapıyorsa kaldırılmalı veya düzeltilmeli) */
+/* Eğer bu kural sadece görünürlük ayarlaması yapıyorsa ve normal durumda başka bir kural gizliyorsa, */
+/* asıl gizleyici kuralı bulup kaldırmamız gerekir. */
+
+.idea-card:hover .idea-actions {
+    /* Bu kural içinde opacity: 1; veya visibility: visible; gibi ifadeler varsa ve bunlar sorun yaratıyorsa */
+    /* ya bu kuralı kaldıracağız ya da yukarıdaki .idea-actions kuralının yeterli olmasını sağlayacağız. */
+    /* Varsayım: Bu kural gizlemeyi kaldırıyordu, bu yüzden normal durumda gizleyen başka bir kural var. */
+    /* Bu durumda aşağıdaki gizleyici kuralı arayıp kaldıracağız. */
+}
+
+/* İhtimal dahilindeki gizleyici kural (.idea-actions veya başka bir selector) */
+/* Bu kural opacity: 0; visibility: hidden; veya display: none; gibi bir şey içeriyor olabilir */
+/* ve normal durumda elementleri gizliyor olabilir. Bunu bulup KALDIRACAĞIZ veya DÜZELTECEĞİZ. */
+
+/* Örnek: Eğer aşağıdaki gibi bir kural varsa, bu sorunun kaynağıdır ve kaldırılmalıdır: */
+/*
+
+
+/* Şimdi dosyanın geri kalanındaki diğer kuralları ekliyoruz */
+.idea-category {
+    background: rgba(237, 137, 54, 0.1);
+    color: var(--accent-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Footer Styles */
+.site-footer {
+    background: var(--text-primary); /* Koyu arka plan */
+    color: var(--white); /* Açık yazı rengi */
+    padding: 2rem 1rem;
+    margin-top: 3rem; /* Üst elementle arasına boşluk */
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    box-shadow: 0 -5px 10px rgba(0,0,0,0.05); /* Üste hafif gölge */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+/* Responsive ayarlar */
+@media (max-width: 768px) {
+    .site-footer {
+        padding: 1.5rem 1rem;
+    }
 }
 
 

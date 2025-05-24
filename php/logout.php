@@ -2,13 +2,18 @@
 // Oturum başlatılıyor
 session_start();
 
-// Kullanıcı bilgilerini temizleyin
-session_unset();
+// Tüm oturum verilerini temizle
+$_SESSION = array();
 
-// Oturumdan çıkış yapın
+// Oturum çerezini sil
+if (isset($_COOKIE[session_name()])) {
+    setcookie(session_name(), '', time() - 3600, '/');
+}
+
+// Oturumu sonlandır
 session_destroy();
 
-// Giriş sayfasına yönlendirin
+// Giriş sayfasına yönlendir
 header("Location: login.php");
 exit;
 ?>
