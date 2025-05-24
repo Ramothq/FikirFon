@@ -46,7 +46,7 @@ FikirFon, girişimciler ve yatırımcıları bir araya getiren, fikirlerin payla
    - Apache'yi yeniden başlatın
 
 4. Veritabanı bağlantısını ayarlayın:
-   - `php/db.php` dosyasını düzenleyin:
+   - `php/db_connect.php` dosyasını düzenleyin:
    ```php
    $host = "database-1.ckpmm2coabsv.us-east-1.rds.amazonaws.com";
    $port = "5432";

@@ -28,19 +28,23 @@ if (!$user) {
 
 // Kullanıcının fikirlerini al
 $query = "SELECT i.*, 
+                c.name as category_name,
                 (SELECT COUNT(*) FROM supports WHERE idea_id = i.id) as support_count,
                 (SELECT COUNT(*) FROM supports WHERE idea_id = i.id AND user_id = $1) as user_supported
                 FROM ideas i 
+                LEFT JOIN categories c ON i.category_id = c.id
                 WHERE i.user_id = $2 
                 ORDER BY i.created_at DESC";
 $ideas_result = pg_query_params($conn, $query, array($_SESSION['user_id'], $profile_id));
 
 // Kullanıcının desteklediği fikirleri al
 $query = "SELECT i.*, 
+          c.name as category_name,
           u.first_name, u.last_name, u.role,
           (SELECT COUNT(*) FROM supports WHERE idea_id = i.id) as support_count,
           (SELECT COUNT(*) FROM supports WHERE idea_id = i.id AND user_id = $1) as user_supported
           FROM ideas i 
+          LEFT JOIN categories c ON i.category_id = c.id
           JOIN users u ON i.user_id = u.id
           JOIN supports s ON i.id = s.idea_id
           WHERE s.user_id = $2
@@ -440,7 +444,7 @@ $stats = pg_fetch_assoc($stats_result);
                         <h3 class="idea-title"><?php echo htmlspecialchars($idea['title']); ?></h3>
                         <p class="idea-description"><?php echo htmlspecialchars($idea['description']); ?></p>
                         <div class="idea-meta">
-                            <span class="idea-category"><?php echo htmlspecialchars($idea['category']); ?></span>
+                            <span class="idea-category"><?php echo htmlspecialchars($idea['category_name'] ?? 'Kategori Yok'); ?></span>
                             <span class="idea-date"><?php echo date('d.m.Y', strtotime($idea['created_at'])); ?></span>
                         </div>
                         <div class="idea-actions">
@@ -472,7 +476,7 @@ $stats = pg_fetch_assoc($stats_result);
                         <h3 class="idea-title"><?php echo htmlspecialchars($idea['title']); ?></h3>
                         <p class="idea-description"><?php echo htmlspecialchars($idea['description']); ?></p>
                         <div class="idea-meta">
-                            <span class="idea-category"><?php echo htmlspecialchars($idea['category']); ?></span>
+                            <span class="idea-category"><?php echo htmlspecialchars($idea['category_name'] ?? 'Kategori Yok'); ?></span>
                             <span class="idea-date"><?php echo date('d.m.Y', strtotime($idea['created_at'])); ?></span>
                         </div>
                         <div class="idea-actions">
